@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .user-entry {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .user-entry label {
+        flex: 1;
+      }
+
+      button {
+        margin-top: 15px;
+        padding: 10px 15px;
+        background: green;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button.reject-all {
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Admin User Approvals</h1>
+
+    <form id="userForm">
+      <ul id="adminUserList"></ul>
+      <button type="button" onclick="bulkApprove()">✅ Approve Selected</button>
+      <button type="button" class="reject-all" onclick="bulkReject()">
+        ❌ Reject Selected
+      </button>
+    </form>
+
+    <script src="admin.js"></script>
+  </body>
+</html>

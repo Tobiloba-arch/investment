@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deposit Funds</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; }
+    .container { max-width: 400px; margin: 60px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px #ccc; }
+    h2 { text-align: center; }
+    label { display: block; margin-top: 15px; }
+    input[type="number"] { width: 100%; padding: 8px; margin-top: 5px; }
+    button { margin-top: 20px; width: 100%; padding: 10px; background: #007bff; color: #fff; border: none; border-radius: 4px; font-size: 16px; }
+    .back { display: block; text-align: center; margin-top: 15px; color: #007bff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Deposit Funds</h2>
+    <form id="depositForm">
+      <label for="amount">Amount ($):</label>
+      <input type="number" id="amount" min="1" required>
+      <button type="submit">Deposit</button>
+    </form>
+    <a href="das.html" class="back">Back to Dashboard</a>
+  </div>
+  <script>
+    const username = localStorage.getItem("loggedInUser");
+    if (!username) {
+      alert("Please log in first.");
+      window.location.href = "login.html";
+    }
+
+    let user = JSON.parse(localStorage.getItem(username));
+    if (!user) {
+      alert("User not found.");
+      window.location.href = "login.html";
+    }
+
+    document.getElementById("depositForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const amount = parseFloat(document.getElementById("amount").value);
+      if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+      }
+      user.wallet = (user.wallet || 0) + amount;
+      localStorage.setItem(username, JSON.stringify(user));
+      alert("Deposit successful! New balance: $" + user.wallet.toFixed(2));
+      window.location.href = "das.html";
+    });
+  </script>
+</body>
+</html>
