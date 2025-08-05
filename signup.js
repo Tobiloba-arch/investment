@@ -19,14 +19,14 @@ document.getElementById("signupForm").addEventListener("submit", function (e) {
     username: username,
     email: email,
     password: password,
-    approved: false,
+    approved: true, // Auto-approved
     wallet: 0,
     investments: [],
     date: new Date().toLocaleString(),
   };
 
   localStorage.setItem(username, JSON.stringify(user));
-  alert("Signup successful! Please wait for admin approval.");
+  alert("Signup successful!");
 
   document.getElementById("signupForm").reset();
 });
